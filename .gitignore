@@ -1,0 +1,6 @@
+**/myenv/
+/Flash
+**/node_modules/
+.vs/
+bin/
+obj/

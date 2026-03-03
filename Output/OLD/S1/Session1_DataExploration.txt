@@ -1,0 +1,21 @@
+customers
+
+- Invalid Join Dates: 270
+- Invalid Last Purchase Dates: 217
+- Negative Values: 0
+- Invalid IDs: 0
+- (Unexpected Values) Invalid Preferred Categories: 363
+- Formatting Issues: 252
+
+Products
+Invalid Date: 1
+ negative cost: 1
+Empty Products: 10
+Fomatting Issues (Membership Status): 108
+
+
+
+Sales Transactions
+- Invalid Date: 0
+- Negative Values: 0
+- Invalid IDs: 3

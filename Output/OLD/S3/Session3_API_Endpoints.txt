@@ -1,0 +1,685 @@
+GET
+    /api/customers                  Get all customers
+    /api/customers/{id}             Get specific customer  by id
+
+    /api/orderitems                 Get all orderItems
+    /api/orderitems/{id}            Get specific orderItem  by id
+
+    /api/orders                     Get all orders
+    /api/orders/{id}                Get specific order  by id
+
+    /api/products                   Get all products
+    /api/products/{id}              Get specific product by id
+
+POST    
+
+    /api/customers (params)         Create new customer
+
+    /api/orderitems (params)        Create new orderItem
+
+    /api/orders (params)            Create new order
+
+    /api/products (params)          Create new product
+
+DELETE  
+
+     /api/customers/{id}            Delete a customer by id
+
+    /api/orderitems/{id}            Delete an orderItem by id
+
+    /api/orders/{id}                Delete an order by id
+
+    /api/products/{id}              Delete a product by id
+
+PUT
+
+    /api/customers/{id} (params)    Update a customer by id
+
+    /api/orderitems/{id} (params)   Update an orderItem by id
+    
+    /api/orders/{id} (params)       Update an order by id
+
+    /api/orders/{id}/complete       Mark an order as complete by id
+
+    /api/orders/{id}/cancel         Mark an order as cancelled by id
+
+    /api/products/{id} (params)     Update a product by id
+
+
+Expected response:
+GET
+    /api/customers                  Get all customers
+    [
+  {
+    "customerId": 0,
+    "firstName": "string",
+    "lastName": "string",
+    "age": 0,
+    "gender": "string",
+    "postalCode": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "membershipStatus": "string",
+    "joinDate": "2026-03-02",
+    "lastPurchaseDate": "2026-03-02",
+    "totalSpending": 0,
+    "averageOrderValue": 0,
+    "frequency": "string",
+    "preferredCategory": "string",
+    "churned": true,
+    "orders": [
+      {
+        "transactionId": 0,
+        "customerId": 0,
+        "orderDate": "2026-03-02T06:36:53.788Z",
+        "totalAmount": 0,
+        "status": "string",
+        "paymentMethod": "string",
+        "channel": "string",
+        "storeId": 0,
+        "promotionId": 0,
+        "discountAmount": 0,
+        "customer": "string",
+        "orderItems": [
+          {
+            "orderItemId": 0,
+            "transactionId": 0,
+            "productId": 0,
+            "quantity": 0,
+            "price": 0,
+            "product": {
+              "productId": 0,
+              "productName": "string",
+              "category": "string",
+              "price": 0,
+              "cost": 0,
+              "description": "string",
+              "seasonal": true,
+              "active": true,
+              "introducedDate": "2026-03-02",
+              "ingredients": "string",
+              "orderItems": [
+                "string"
+              ]
+            },
+            "transaction": "string"
+          }
+        ]
+      }
+    ]
+  }
+  // ... more customers
+]
+
+
+    /api/customers/{id}             Get specific customer  by id
+{
+  "customerId": 5,
+  "firstName": "Ava",
+  "lastName": "Allen",
+  "age": 50,
+  "gender": "F",
+  "postalCode": "69006",
+  "email": "ava.allen@hotmail.com",
+  "phoneNumber": "33267246001",
+  "membershipStatus": "Silver",
+  "joinDate": "2023-05-13",
+  "lastPurchaseDate": "2023-05-18",
+  "totalSpending": 629.48,
+  "averageOrderValue": 16.57,
+  "frequency": "38",
+  "preferredCategory": "Bread",
+  "churned": true,
+  "orders": []
+}
+
+
+    /api/orderitems                 Get all orderItems
+[
+  {
+    "orderItemId": 0,
+    "transactionId": 0,
+    "productId": 0,
+    "quantity": 0,
+    "price": 0,
+    "product": {
+      "productId": 0,
+      "productName": "string",
+      "category": "string",
+      "price": 0,
+      "cost": 0,
+      "description": "string",
+      "seasonal": true,
+      "active": true,
+      "introducedDate": "2026-03-02",
+      "ingredients": "string",
+      "orderItems": [
+        "string"
+      ]
+    },
+    "transaction": "string"
+  }
+  // ... more orderItems
+]
+
+
+    /api/orderitems/{id}            Get specific orderItem  by id
+{
+  "orderItemId": 0,
+  "transactionId": 0,
+  "productId": 0,
+  "quantity": 0,
+  "price": 0,
+  "product": {
+    "productId": 0,
+    "productName": "string",
+    "category": "string",
+    "price": 0,
+    "cost": 0,
+    "description": "string",
+    "seasonal": true,
+    "active": true,
+    "introducedDate": "2026-03-02",
+    "ingredients": "string",
+    "orderItems": [
+      "string"
+    ]
+  },
+  "transaction": "string"
+}
+
+
+    /api/orders                     Get all orders
+[
+  {
+    "transactionId": 0,
+    "customerId": 0,
+    "orderDate": "2026-03-02T06:38:57.413Z",
+    "totalAmount": 0,
+    "status": "string",
+    "paymentMethod": "string",
+    "channel": "string",
+    "storeId": 0,
+    "promotionId": 0,
+    "discountAmount": 0,
+    "customer": "string",
+    "orderItems": [
+      {
+        "orderItemId": 0,
+        "transactionId": 0,
+        "productId": 0,
+        "quantity": 0,
+        "price": 0,
+        "product": {
+          "productId": 0,
+          "productName": "string",
+          "category": "string",
+          "price": 0,
+          "cost": 0,
+          "description": "string",
+          "seasonal": true,
+          "active": true,
+          "introducedDate": "2026-03-02",
+          "ingredients": "string",
+          "orderItems": [
+            "string"
+          ]
+        },
+        "transaction": "string"
+      }
+    ]
+  }
+  // ... more
+]
+
+
+    /api/orders/{id}                Get specific order  by id
+{
+  "transactionId": 0,
+  "customerId": 0,
+  "orderDate": "2026-03-02T06:39:19.491Z",
+  "totalAmount": 0,
+  "status": "string",
+  "paymentMethod": "string",
+  "channel": "string",
+  "storeId": 0,
+  "promotionId": 0,
+  "discountAmount": 0,
+  "customer": "string",
+  "orderItems": [
+    {
+      "orderItemId": 0,
+      "transactionId": 0,
+      "productId": 0,
+      "quantity": 0,
+      "price": 0,
+      "product": {
+        "productId": 0,
+        "productName": "string",
+        "category": "string",
+        "price": 0,
+        "cost": 0,
+        "description": "string",
+        "seasonal": true,
+        "active": true,
+        "introducedDate": "2026-03-02",
+        "ingredients": "string",
+        "orderItems": [
+          "string"
+        ]
+      },
+      "transaction": "string"
+    }
+  ]
+}
+
+
+    /api/products                   Get all products
+[
+  {
+    "productId": 0,
+    "productName": "string",
+    "category": "string",
+    "price": 0,
+    "cost": 0,
+    "description": "string",
+    "seasonal": true,
+    "active": true,
+    "introducedDate": "2026-03-02",
+    "ingredients": "string",
+    "orderItems": [
+      "string"
+    ]
+  }
+]
+
+
+    /api/products/{id}              Get specific product by id
+{
+  "productId": 0,
+  "productName": "string",
+  "category": "string",
+  "price": 0,
+  "cost": 0,
+  "description": "string",
+  "seasonal": true,
+  "active": true,
+  "introducedDate": "2026-03-02",
+  "ingredients": "string",
+  "orderItems": [
+    "string"
+  ]
+}
+
+
+POST    
+
+    /api/customers (params)         Create new customer
+{
+  "customerId": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "age": 0,
+  "gender": "string",
+  "postalCode": "string",
+  "email": "string",
+  "phoneNumber": "string",
+  "membershipStatus": "string",
+  "joinDate": "2026-03-02",
+  "lastPurchaseDate": "2026-03-02",
+  "totalSpending": 0,
+  "averageOrderValue": 0,
+  "frequency": "string",
+  "preferredCategory": "string",
+  "churned": true,
+  "orders": [
+    {
+      "transactionId": 0,
+      "customerId": 0,
+      "orderDate": "2026-03-02T06:40:09.606Z",
+      "totalAmount": 0,
+      "status": "string",
+      "paymentMethod": "string",
+      "channel": "string",
+      "storeId": 0,
+      "promotionId": 0,
+      "discountAmount": 0,
+      "customer": "string",
+      "orderItems": [
+        {
+          "orderItemId": 0,
+          "transactionId": 0,
+          "productId": 0,
+          "quantity": 0,
+          "price": 0,
+          "product": {
+            "productId": 0,
+            "productName": "string",
+            "category": "string",
+            "price": 0,
+            "cost": 0,
+            "description": "string",
+            "seasonal": true,
+            "active": true,
+            "introducedDate": "2026-03-02",
+            "ingredients": "string",
+            "orderItems": [
+              "string"
+            ]
+          },
+          "transaction": "string"
+        }
+      ]
+    }
+  ]
+}
+    /api/orderitems (params)        Create new orderItem
+{
+  "orderItemId": 0,
+  "transactionId": 0,
+  "productId": 0,
+  "quantity": 0,
+  "price": 0,
+  "product": {
+    "productId": 0,
+    "productName": "string",
+    "category": "string",
+    "price": 0,
+    "cost": 0,
+    "description": "string",
+    "seasonal": true,
+    "active": true,
+    "introducedDate": "2026-03-02",
+    "ingredients": "string",
+    "orderItems": [
+      "string"
+    ]
+  },
+  "transaction": "string"
+}
+    /api/orders (params)            Create new order
+{
+  "transactionId": 0,
+  "customerId": 0,
+  "orderDate": "2026-03-02T06:40:40.342Z",
+  "totalAmount": 0,
+  "status": "string",
+  "paymentMethod": "string",
+  "channel": "string",
+  "storeId": 0,
+  "promotionId": 0,
+  "discountAmount": 0,
+  "customer": "string",
+  "orderItems": [
+    {
+      "orderItemId": 0,
+      "transactionId": 0,
+      "productId": 0,
+      "quantity": 0,
+      "price": 0,
+      "product": {
+        "productId": 0,
+        "productName": "string",
+        "category": "string",
+        "price": 0,
+        "cost": 0,
+        "description": "string",
+        "seasonal": true,
+        "active": true,
+        "introducedDate": "2026-03-02",
+        "ingredients": "string",
+        "orderItems": [
+          "string"
+        ]
+      },
+      "transaction": "string"
+    }
+  ]
+}
+    /api/products (params)          Create new product
+{
+  "productId": 0,
+  "productName": "string",
+  "category": "string",
+  "price": 0,
+  "cost": 0,
+  "description": "string",
+  "seasonal": true,
+  "active": true,
+  "introducedDate": "2026-03-02",
+  "ingredients": "string",
+  "orderItems": [
+    "string"
+  ]
+}
+
+
+DELETE  
+
+     /api/customers/{id}            Delete a customer by id
+Status 200
+    /api/orderitems/{id}            Delete an orderItem by id
+Status 200
+    /api/orders/{id}                Delete an order by id
+Status 200
+    /api/products/{id}              Delete a product by id
+Status 200
+
+PUT
+
+    /api/customers/{id} (params)    Update a customer by id
+{
+  "customerId": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "age": 0,
+  "gender": "string",
+  "postalCode": "string",
+  "email": "string",
+  "phoneNumber": "string",
+  "membershipStatus": "string",
+  "joinDate": "2026-03-02",
+  "lastPurchaseDate": "2026-03-02",
+  "totalSpending": 0,
+  "averageOrderValue": 0,
+  "frequency": "string",
+  "preferredCategory": "string",
+  "churned": true,
+  "orders": [
+    {
+      "transactionId": 0,
+      "customerId": 0,
+      "orderDate": "2026-03-02T06:41:44.773Z",
+      "totalAmount": 0,
+      "status": "string",
+      "paymentMethod": "string",
+      "channel": "string",
+      "storeId": 0,
+      "promotionId": 0,
+      "discountAmount": 0,
+      "customer": "string",
+      "orderItems": [
+        {
+          "orderItemId": 0,
+          "transactionId": 0,
+          "productId": 0,
+          "quantity": 0,
+          "price": 0,
+          "product": {
+            "productId": 0,
+            "productName": "string",
+            "category": "string",
+            "price": 0,
+            "cost": 0,
+            "description": "string",
+            "seasonal": true,
+            "active": true,
+            "introducedDate": "2026-03-02",
+            "ingredients": "string",
+            "orderItems": [
+              "string"
+            ]
+          },
+          "transaction": "string"
+        }
+      ]
+    }
+  ]
+}
+    /api/orderitems/{id} (params)   Update an orderItem by id
+{
+  "orderItemId": 0,
+  "transactionId": 0,
+  "productId": 0,
+  "quantity": 0,
+  "price": 0,
+  "product": {
+    "productId": 0,
+    "productName": "string",
+    "category": "string",
+    "price": 0,
+    "cost": 0,
+    "description": "string",
+    "seasonal": true,
+    "active": true,
+    "introducedDate": "2026-03-02",
+    "ingredients": "string",
+    "orderItems": [
+      "string"
+    ]
+  },
+  "transaction": "string"
+}
+    /api/orders/{id} (params)       Update an order by id
+{
+  "transactionId": 0,
+  "customerId": 0,
+  "orderDate": "2026-03-02T06:42:05.258Z",
+  "totalAmount": 0,
+  "status": "string",
+  "paymentMethod": "string",
+  "channel": "string",
+  "storeId": 0,
+  "promotionId": 0,
+  "discountAmount": 0,
+  "customer": "string",
+  "orderItems": [
+    {
+      "orderItemId": 0,
+      "transactionId": 0,
+      "productId": 0,
+      "quantity": 0,
+      "price": 0,
+      "product": {
+        "productId": 0,
+        "productName": "string",
+        "category": "string",
+        "price": 0,
+        "cost": 0,
+        "description": "string",
+        "seasonal": true,
+        "active": true,
+        "introducedDate": "2026-03-02",
+        "ingredients": "string",
+        "orderItems": [
+          "string"
+        ]
+      },
+      "transaction": "string"
+    }
+  ]
+}
+    /api/orders/{id}/complete       Mark an order as complete by id
+{
+  "transactionId": 0,
+  "customerId": 0,
+  "orderDate": "2026-03-02T06:42:05.258Z",
+  "totalAmount": 0,
+  "status": "string",
+  "paymentMethod": "string",
+  "channel": "string",
+  "storeId": 0,
+  "promotionId": 0,
+  "discountAmount": 0,
+  "customer": "string",
+  "orderItems": [
+    {
+      "orderItemId": 0,
+      "transactionId": 0,
+      "productId": 0,
+      "quantity": 0,
+      "price": 0,
+      "product": {
+        "productId": 0,
+        "productName": "string",
+        "category": "string",
+        "price": 0,
+        "cost": 0,
+        "description": "string",
+        "seasonal": true,
+        "active": true,
+        "introducedDate": "2026-03-02",
+        "ingredients": "string",
+        "orderItems": [
+          "string"
+        ]
+      },
+      "transaction": "string"
+    }
+  ]
+}
+    /api/orders/{id}/cancel         Mark an order as cancelled by id
+{
+  "transactionId": 0,
+  "customerId": 0,
+  "orderDate": "2026-03-02T06:42:05.258Z",
+  "totalAmount": 0,
+  "status": "string",
+  "paymentMethod": "string",
+  "channel": "string",
+  "storeId": 0,
+  "promotionId": 0,
+  "discountAmount": 0,
+  "customer": "string",
+  "orderItems": [
+    {
+      "orderItemId": 0,
+      "transactionId": 0,
+      "productId": 0,
+      "quantity": 0,
+      "price": 0,
+      "product": {
+        "productId": 0,
+        "productName": "string",
+        "category": "string",
+        "price": 0,
+        "cost": 0,
+        "description": "string",
+        "seasonal": true,
+        "active": true,
+        "introducedDate": "2026-03-02",
+        "ingredients": "string",
+        "orderItems": [
+          "string"
+        ]
+      },
+      "transaction": "string"
+    }
+  ]
+}
+    /api/products/{id} (params)     Update a product by id
+{
+  "productId": 0,
+  "productName": "string",
+  "category": "string",
+  "price": 0,
+  "cost": 0,
+  "description": "string",
+  "seasonal": true,
+  "active": true,
+  "introducedDate": "2026-03-02",
+  "ingredients": "string",
+  "orderItems": [
+    "string"
+  ]
+}

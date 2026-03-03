@@ -1,0 +1,106 @@
+Endpoint: /api/customer
+
+Methods:
+- GET: Retrieve a list of all customers or a specific customer by ID.
+- POST: Create a new customer.
+- PUT: Update existing customer data.
+- DELETE: Delete a customer
+
+Request Parameters:
+- GET:
+    - id (optional, integer): If provided, returns details of a specific customer with this ID.
+- POST/PUT:
+    - first_name (string, required, max 100 characters)
+    - last_name (string, required, max 100 characters)
+    - age (integer, required)
+    - gender (character, required)
+    - postal_code (integer, required)
+    - email (string, required, max 500 characters)
+    - phone_number (string, required, max 100 characters)
+    - membership_status (string, default BRONZE)
+    - total_spending (int, default 0)
+    - average_order_value (double, default 0.0)
+    - frequency (double, default 0.0)
+    - preferred_category (string, optional)
+    - churned (string, default false)
+    - join_date (date, default date now)
+    - last_purchased (date, optional)
+
+- DELETE:
+    - id (integer, required): The ID of the customer to delete.
+
+Response Data (JSON):
+- GET (all customers):
+    [
+        {
+            "customer_id": 103,
+            "first_name": "Harper",
+            "last_name": "Robinson",
+            "age": 38,
+            "gender": "M",
+            "postal_code": 69006,
+            "email": "harperr@yahoo.com",
+            "phone_number": 33148254771,
+            "membership_status": "BASIC",
+            "total_spending": 929.52,
+            "average_order_value": 42.25,
+            "frequency": 22,
+            "preferred_category": "PASTRIES",
+            "churned": "False",
+            "join_date": "25/01/2022 10:21",
+            "last_purchased": ""
+        },
+        {
+            "customer_id": 126,
+            "first_name": "Louis",
+            "last_name": "Robert",
+            "age": 41,
+            "gender": "M",
+            "postal_code": 69001,
+            "email": "louis_robert@hotmail.com",
+            "phone_number": 33587452449,
+            "membership_status": "SILVER",
+            "total_spending": 669.56,
+            "average_order_value": 17.17,
+            "frequency": 39,
+            "preferred_category": "BREAD",
+            "churned": "True",
+            "join_date": "21/12/2072 13:04",
+            "last_purchased": ""
+        },
+        // ... more customers
+    ]
+
+- GET (single customer):
+    {
+        "customer_id": 126,
+        "first_name": "Louis",
+        "last_name": "Robert",
+        "age": 41,
+        "gender": "M",
+        "postal_code": 69001,
+        "email": "louis_robert@hotmail.com",
+        "phone_number": 33587452449,
+        "membership_status": "SILVER",
+        "total_spending": 669.56,
+        "average_order_value": 17.17,
+        "frequency": 39,
+        "preferred_category": "BREAD",
+        "churned": "True",
+        "join_date": "21/12/2072 13:04",
+        "last_purchased": ""
+    }
+
+- POST/PUT:
+    {
+        "customer_id": 126,
+        "first_name": "Louis",
+        "last_name": "Robert",
+        ... (other fields)
+    }
+
+
+Error Handling:
+- 400 Bad Request: Invalid input parameters, missing required fields, or incorrect data types.
+- 404 Not Found: Customer not found (for GET and DELETE with specific ID).
+- 500 Internal Server Error: Unexpected server error.
