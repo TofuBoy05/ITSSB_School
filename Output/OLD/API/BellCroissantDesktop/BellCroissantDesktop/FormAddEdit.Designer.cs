@@ -159,6 +159,7 @@
             btnSave.TabIndex = 14;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
@@ -168,9 +169,11 @@
             btnCancel.TabIndex = 15;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // numPrice
             // 
+            numPrice.DecimalPlaces = 2;
             numPrice.Location = new Point(134, 89);
             numPrice.Name = "numPrice";
             numPrice.Size = new Size(254, 23);
@@ -178,6 +181,7 @@
             // 
             // numCost
             // 
+            numCost.DecimalPlaces = 2;
             numCost.Location = new Point(134, 129);
             numCost.Name = "numCost";
             numCost.Size = new Size(254, 23);
