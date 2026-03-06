@@ -1,0 +1,388 @@
+===============================
+POST /api/register
+
+Body
+email string
+firstName string
+LastName string
+mailingListSub boolean
+password string
+profilePicture null | string
+securityAnswer string
+securityQuestion string
+
+Responses
+200
+OK
+{
+  "message": "string",
+  "user": {
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string"
+  }
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+POST /api/login
+
+Body
+email string
+password string
+
+Responses
+200
+OK
+{
+  "message": "string"
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+
+===============================
+POST /api/forgot-password
+
+Body
+email string
+
+Responses
+200
+{
+  "question": "string"
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+POST 
+
+/api/reset-password
+
+Body
+email string
+newPassword string
+securityAnswer string
+
+Responses
+200
+{
+  "message": "string"
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+
+===============================
+GET /api/customers
+
+Query Parameters
+email string
+
+Responses
+200
+{
+  "customerId": 1,
+  "email": "string",
+  "firstName": "string",
+  "lastName": "string",
+  "totalSpending": 1
+}
+
+400
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "message": "string"
+}
+
+500
+No Body
+
+===============================
+GET /api/profile
+
+Responses
+200
+{
+  "email": "string",
+  "firstName": "string",
+  "lastName": "string",
+  "profilePicture": null,
+  "mailingListSubscribed": true
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+PUT /api/profile
+
+Body
+firstName string
+LastName string
+profilePicture null | string
+
+Responses
+200
+OK
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+GET /api/addresses
+
+Responses
+200
+[
+  {
+    "addressId": 1,
+    "streetAddress": "string",
+    "city": "string",
+    "postalCode": "string",
+    "country": "string",
+    "userId": 1
+  }
+]
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+POST /api/addresses
+
+Body
+city string
+country string
+postalCode string
+streetAddress string
+
+Responses
+200
+{
+  "addressId": 1,
+  "streetAddress": "string",
+  "city": "string",
+  "postalCode": "string",
+  "country": "string",
+  "userId": 1
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+PUT /api/addresses/{id}
+
+Path Parameters
+id integer | string
+Signed 32-bit integers (commonly used integer type).
+
+Body
+city string
+country string
+postalCode string
+streetAddress string
+
+Responses
+200
+{
+  "addressId": 1,
+  "streetAddress": "string",
+  "city": "string",
+  "postalCode": "string",
+  "country": "string",
+  "userId": 1
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+403
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+DELETE /api/addresses/{id}
+
+Path Parameters
+id integer | string .
+Signed 32-bit integers (commonly used integer type).
+
+Responses
+200
+OK
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+403
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+404
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+POST /api/subscribe
+
+Responses
+200
+{
+  "email": "string",
+  "isSubscribed": true
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
+
+===============================
+POST /api/unsubscribe
+
+Responses
+200
+{
+  "email": "string",
+  "isSubscribed": true
+}
+
+401
+{
+  "type": null,
+  "title": null,
+  "status": null,
+  "detail": null,
+  "instance": null
+}
