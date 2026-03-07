@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellCroissantDesktop
 {
-    internal class Order
+    public class Order
     {
         public int TransactionId { get; set; }
 
@@ -28,8 +28,10 @@ namespace BellCroissantDesktop
 
         public decimal? DiscountAmount { get; set; }
 
-        public virtual Customer Customer { get; set; } = null!;
+        public Customer Customer { get; set; } = null!;
 
-        public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public string CustomerName => $"{Customer.FirstName} {Customer.LastName}";
+
+        public  ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

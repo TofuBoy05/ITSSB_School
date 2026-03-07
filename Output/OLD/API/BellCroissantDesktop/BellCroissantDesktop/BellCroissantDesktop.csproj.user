@@ -7,5 +7,11 @@
     <Compile Update="FormAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="OrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="OrderManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

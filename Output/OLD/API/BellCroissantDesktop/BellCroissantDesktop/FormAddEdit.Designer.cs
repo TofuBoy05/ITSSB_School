@@ -35,7 +35,6 @@
             label5 = new Label();
             cbActive = new CheckBox();
             cbSeasonal = new CheckBox();
-            txtCategory = new TextBox();
             txtProductName = new TextBox();
             dtPickerIntroductionDate = new DateTimePicker();
             label6 = new Label();
@@ -44,6 +43,7 @@
             btnCancel = new Button();
             numPrice = new NumericUpDown();
             numCost = new NumericUpDown();
+            cmbCategory = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             SuspendLayout();
@@ -113,13 +113,6 @@
             cbSeasonal.Text = "Seasonal";
             cbSeasonal.UseVisualStyleBackColor = true;
             // 
-            // txtCategory
-            // 
-            txtCategory.Location = new Point(134, 12);
-            txtCategory.Name = "txtCategory";
-            txtCategory.Size = new Size(254, 23);
-            txtCategory.TabIndex = 7;
-            // 
             // txtProductName
             // 
             txtProductName.Location = new Point(134, 50);
@@ -187,11 +180,21 @@
             numCost.Size = new Size(254, 23);
             numCost.TabIndex = 17;
             // 
+            // cmbCategory
+            // 
+            cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.Location = new Point(134, 12);
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(254, 23);
+            cmbCategory.TabIndex = 18;
+            // 
             // FormAddEdit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(404, 517);
+            Controls.Add(cmbCategory);
             Controls.Add(numCost);
             Controls.Add(numPrice);
             Controls.Add(btnCancel);
@@ -200,7 +203,6 @@
             Controls.Add(label6);
             Controls.Add(dtPickerIntroductionDate);
             Controls.Add(txtProductName);
-            Controls.Add(txtCategory);
             Controls.Add(cbSeasonal);
             Controls.Add(cbActive);
             Controls.Add(label5);
@@ -236,5 +238,6 @@
         private Button btnCancel;
         private NumericUpDown numPrice;
         private NumericUpDown numCost;
+        private ComboBox cmbCategory;
     }
 }

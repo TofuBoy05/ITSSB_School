@@ -38,6 +38,7 @@
             btnDelete = new DataGridViewButtonColumn();
             txtSearch = new TextBox();
             btnAddProduct = new Button();
+            btnManageOrders = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             dgvProducts.Location = new Point(12, 41);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ReadOnly = true;
-            dgvProducts.Size = new Size(776, 397);
+            dgvProducts.Size = new Size(776, 406);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellContentClick += dgvProducts_CellContentClick;
             dgvProducts.ColumnHeaderMouseClick += dgvProducts_ColumnHeaderMouseClick;
@@ -128,11 +129,22 @@
             btnAddProduct.UseVisualStyleBackColor = true;
             btnAddProduct.Click += btnAddProduct_Click;
             // 
+            // btnManageOrders
+            // 
+            btnManageOrders.Location = new Point(682, 457);
+            btnManageOrders.Name = "btnManageOrders";
+            btnManageOrders.Size = new Size(106, 23);
+            btnManageOrders.TabIndex = 3;
+            btnManageOrders.Text = "Manage Orders";
+            btnManageOrders.UseVisualStyleBackColor = true;
+            btnManageOrders.Click += btnManageOrders_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 492);
+            Controls.Add(btnManageOrders);
             Controls.Add(btnAddProduct);
             Controls.Add(txtSearch);
             Controls.Add(dgvProducts);
@@ -156,5 +168,6 @@
         private DataGridViewTextBoxColumn colCost;
         private DataGridViewButtonColumn btnEdit;
         private DataGridViewButtonColumn btnDelete;
+        private Button btnManageOrders;
     }
 }

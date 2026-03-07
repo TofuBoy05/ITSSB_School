@@ -82,7 +82,7 @@ namespace BellCroissantDesktop
             if (columnName == "btnEdit")
             {
                 using (var f = new FormAddEdit(selectedProduct))
-                if (f.ShowDialog() == DialogResult.OK)
+                    if (f.ShowDialog() == DialogResult.OK)
                     {
                         await RefreshData();
                     }
@@ -143,6 +143,14 @@ namespace BellCroissantDesktop
                 }
             }
 
+        }
+
+        private void btnManageOrders_Click(object sender, EventArgs e)
+        {
+            using (var f = new OrderManagement())
+            {
+                f.ShowDialog();
+            }
         }
     }
 }

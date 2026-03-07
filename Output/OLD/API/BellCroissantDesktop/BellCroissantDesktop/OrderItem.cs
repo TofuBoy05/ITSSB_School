@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BellCroissantDesktop
 {
-    internal class OrderItem
+    public class OrderItem
     {
         public int OrderItemId { get; set; }
 

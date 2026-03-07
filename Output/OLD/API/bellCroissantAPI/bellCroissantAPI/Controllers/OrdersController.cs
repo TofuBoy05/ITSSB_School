@@ -159,6 +159,47 @@ namespace bellCroissantAPI.Controllers
             return NoContent();
         }
 
+        // GET: api/Orders/user/{email}
+        [HttpGet("user/{email}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByEmail(string email)
+        {
+            string auth = Request.Headers["Authorization"];
+            if (auth != "Basic c3RhZmY6QkNMeW9uMjAyNA==")
+            {
+                return Unauthorized();
+            }
+
+            var orders = await _context.Orders
+                .Where(o => o.Customer != null && o.Customer.Email == email)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .ToListAsync();
+
+            if (orders == null || orders.Count == 0)
+            {
+                return NotFound();
+            }
+
+            // Ensure Customer and circular navigation properties are not returned
+            foreach (var o in orders)
+            {
+                o.Customer = null!;
+                if (o.OrderItems != null)
+                {
+                    foreach (var oi in o.OrderItems)
+                    {
+                        oi.Transaction = null!; // avoid sending back the parent order reference
+                        if (oi.Product != null)
+                        {
+                            oi.Product.OrderItems = null!; // avoid circular references
+                        }
+                    }
+                }
+            }
+
+            return orders;
+        }
+
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.TransactionId == id);

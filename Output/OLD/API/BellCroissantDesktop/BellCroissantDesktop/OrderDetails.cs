@@ -13,7 +13,7 @@ namespace BellCroissantDesktop
 {
     public partial class OrderDetails : Form
     {
-        private Order currentOrder;
+        public Order currentOrder;
 
         public OrderDetails(Order selectedOrder)
         {

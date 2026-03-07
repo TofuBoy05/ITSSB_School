@@ -19,10 +19,21 @@ namespace BellCroissantDesktop
             InitializeComponent();
             this.CurrentProduct = product;
 
+            // Populate category choices
+            cmbCategory.Items.AddRange(new[] { "Bread", "Pastry", "Tarte", "Viennoiserie" });
+
             if (product != null)
             {
                 txtProductName.Text = product.ProductName;
-                txtCategory.Text = product.Category;
+                // select category if it exists in the list
+                if (!string.IsNullOrEmpty(product.Category) && cmbCategory.Items.Contains(product.Category))
+                {
+                    cmbCategory.SelectedItem = product.Category;
+                }
+                else
+                {
+                    cmbCategory.SelectedIndex = -1;
+                }
                 numPrice.Value = product.Price;
                 numCost.Value = product.Cost;
                 dtPickerIntroductionDate.Value = product.IntroducedDate.ToDateTime(TimeOnly.MinValue);
@@ -32,6 +43,8 @@ namespace BellCroissantDesktop
             }
             else
             {
+                // default selection for new product
+                cmbCategory.SelectedIndex = 0;
                 this.Text = "Add New Product";
             }
         }
@@ -48,7 +61,8 @@ namespace BellCroissantDesktop
                 MessageBox.Show("Product Name is required and must be under 100 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (string.IsNullOrEmpty(txtCategory.Text) || txtCategory.Text.Length > 100)
+            var selectedCategory = cmbCategory.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedCategory) || selectedCategory.Length > 100)
             {
                 MessageBox.Show("Category is required and must be under 100 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -67,7 +81,7 @@ namespace BellCroissantDesktop
             var p = CurrentProduct ?? new Product();
 
             p.ProductName = txtProductName.Text;
-            p.Category = txtCategory.Text;
+            p.Category = cmbCategory.SelectedItem as string ?? string.Empty;
             p.Price = numPrice.Value;
             p.Cost = numCost.Value;
             p.Description = txtDescription.Text;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Session4_API_2.Models;
+using System.Configuration;
 
 namespace Session4_API_2.Controller
 {
@@ -319,6 +320,7 @@ namespace Session4_API_2.Controller
 
             return Ok();
         }
+
 
         // --- REQUEST DTOS ---
         public class EditProfileRequest
