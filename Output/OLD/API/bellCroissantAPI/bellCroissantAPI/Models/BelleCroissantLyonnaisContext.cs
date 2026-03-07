@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using bellCroissantAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace bellCroissantAPI.Models;
@@ -17,14 +18,20 @@ public partial class BelleCroissantLyonnaisContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
+    public virtual DbSet<LoyaltyProgram> LoyaltyPrograms { get; set; }
+
     public virtual DbSet<Order> Orders { get; set; }
 
     public virtual DbSet<OrderItem> OrderItems { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<Promotion> Promotions { get; set; }
+
+    public virtual DbSet<QuantityBasedRuleDetail> QuantityBasedRuleDetails { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        //# warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=BelleCroissantLyonnais;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,6 +55,18 @@ public partial class BelleCroissantLyonnaisContext : DbContext
             entity.Property(e => e.PostalCode).HasMaxLength(10);
             entity.Property(e => e.PreferredCategory).HasMaxLength(50);
             entity.Property(e => e.TotalSpending).HasColumnType("decimal(10, 2)");
+        });
+
+        modelBuilder.Entity<LoyaltyProgram>(entity =>
+        {
+            entity.HasKey(e => e.CustomerId).HasName("PK__LoyaltyP__A4AE64D8E1268770");
+
+            entity.ToTable("LoyaltyProgram");
+
+            entity.Property(e => e.CustomerId).ValueGeneratedNever();
+            entity.Property(e => e.MembershipTier)
+                .HasMaxLength(20)
+                .HasDefaultValue("Basic");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -94,6 +113,27 @@ public partial class BelleCroissantLyonnaisContext : DbContext
             entity.Property(e => e.Cost).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.ProductName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<Promotion>(entity =>
+        {
+            entity.HasKey(e => e.PromotionId).HasName("PK__Promotio__52C42FCF1C9554BB");
+
+            entity.Property(e => e.DiscountType).HasMaxLength(20);
+            entity.Property(e => e.DiscountValue).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.MinimumOrderValue).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.PromotionName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<QuantityBasedRuleDetail>(entity =>
+        {
+            entity.HasKey(e => e.RuleId).HasName("PK__Quantity__110458E23CCB4F67");
+
+            entity.Property(e => e.DiscountValue).HasColumnType("decimal(10, 2)");
+
+            entity.HasOne(d => d.Promotion).WithMany(p => p.QuantityBasedRuleDetails)
+                .HasForeignKey(d => d.PromotionId)
+                .HasConstraintName("FK__QuantityB__Promo__0E6E26BF");
         });
 
         OnModelCreatingPartial(modelBuilder);

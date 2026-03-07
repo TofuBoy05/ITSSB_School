@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using bellCroissantAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace bellCroissantAPI.Controllers
 {
@@ -22,14 +23,46 @@ namespace bellCroissantAPI.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<object>>> GetOrders()
         {
             string auth = Request.Headers["Authorization"];
             if (auth != "Basic c3RhZmY6QkNMeW9uMjAyNA==")
             {
                 return Unauthorized();
             }
-            return await _context.Orders.ToListAsync();
+            var orders = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderItems)
+                .ToListAsync();
+
+            var result = orders.Select(o => new
+            {
+                o.TransactionId,
+                o.CustomerId,
+                o.OrderDate,
+                o.TotalAmount,
+                o.Status,
+                o.PaymentMethod,
+                o.Channel,
+                o.StoreId,
+                o.PromotionId,
+                o.DiscountAmount,
+                Customer = o.Customer == null ? null : new
+                {
+                    o.Customer.CustomerId,
+                    o.Customer.FirstName,
+                    o.Customer.LastName
+                },
+                OrderItems = o.OrderItems?.Select(oi => new
+                {
+                    oi.OrderItemId,
+                    oi.ProductId,
+                    oi.Quantity,
+                    oi.Price
+                }).ToList()
+            }).ToList();
+
+            return result;
         }
 
         // GET: api/Orders/5
@@ -161,16 +194,16 @@ namespace bellCroissantAPI.Controllers
 
         // GET: api/Orders/user/{email}
         [HttpGet("user/{email}")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByEmail(string email)
+        public async Task<ActionResult<IEnumerable<object>>> GetOrdersByEmail(string email)
         {
             string auth = Request.Headers["Authorization"];
             if (auth != "Basic c3RhZmY6QkNMeW9uMjAyNA==")
             {
                 return Unauthorized();
             }
-
             var orders = await _context.Orders
                 .Where(o => o.Customer != null && o.Customer.Email == email)
+                .Include(o => o.Customer)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                 .ToListAsync();
@@ -180,24 +213,42 @@ namespace bellCroissantAPI.Controllers
                 return NotFound();
             }
 
-            // Ensure Customer and circular navigation properties are not returned
-            foreach (var o in orders)
+            var result = orders.Select(o => new
             {
-                o.Customer = null!;
-                if (o.OrderItems != null)
+                o.TransactionId,
+                o.CustomerId,
+                o.OrderDate,
+                o.TotalAmount,
+                o.Status,
+                o.PaymentMethod,
+                o.Channel,
+                o.StoreId,
+                o.PromotionId,
+                o.DiscountAmount,
+                Customer = new
                 {
-                    foreach (var oi in o.OrderItems)
+                    o.Customer.CustomerId,
+                    o.Customer.FirstName,
+                    o.Customer.LastName
+                },
+                OrderItems = o.OrderItems?.Select(oi => new
+                {
+                    oi.OrderItemId,
+                    oi.ProductId,
+                    oi.Quantity,
+                    oi.Price,
+                    Product = oi.Product == null ? null : new
                     {
-                        oi.Transaction = null!; // avoid sending back the parent order reference
-                        if (oi.Product != null)
-                        {
-                            oi.Product.OrderItems = null!; // avoid circular references
-                        }
+                        oi.Product.ProductId,
+                        oi.Product.ProductName,
+                        oi.Product.Category,
+                        oi.Product.Price,
+                        oi.Product.Description
                     }
-                }
-            }
+                }).ToList()
+            }).ToList();
 
-            return orders;
+            return result;
         }
 
         private bool OrderExists(int id)

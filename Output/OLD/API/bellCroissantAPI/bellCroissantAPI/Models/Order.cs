@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace bellCroissantAPI.Models;
 
@@ -25,6 +26,7 @@ public partial class Order
 
     public decimal? DiscountAmount { get; set; }
 
+    [JsonIgnore]
     public virtual Customer Customer { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

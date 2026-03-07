@@ -152,5 +152,21 @@ namespace BellCroissantDesktop
                 f.ShowDialog();
             }
         }
+
+        private void btnManagePromotions_Click(object sender, EventArgs e)
+        {
+            using (var f = new PromotionManager())
+            {
+                f.ShowDialog();
+            }
+        }
+
+        private void btnManageLoyalty_Click(object sender, EventArgs e)
+        {
+            using (var f = new LoyaltyManagement())
+            {
+                f.ShowDialog();
+            }
+        }
     }
 }

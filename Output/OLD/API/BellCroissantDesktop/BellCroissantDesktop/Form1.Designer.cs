@@ -39,6 +39,8 @@
             txtSearch = new TextBox();
             btnAddProduct = new Button();
             btnManageOrders = new Button();
+            btnManagePromotions = new Button();
+            btnManageLoyalty = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             dgvProducts.Location = new Point(12, 41);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ReadOnly = true;
-            dgvProducts.Size = new Size(776, 406);
+            dgvProducts.Size = new Size(742, 406);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellContentClick += dgvProducts_CellContentClick;
             dgvProducts.ColumnHeaderMouseClick += dgvProducts_ColumnHeaderMouseClick;
@@ -121,7 +123,8 @@
             // 
             // btnAddProduct
             // 
-            btnAddProduct.Location = new Point(666, 11);
+            btnAddProduct.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddProduct.Location = new Point(632, 11);
             btnAddProduct.Name = "btnAddProduct";
             btnAddProduct.Size = new Size(122, 23);
             btnAddProduct.TabIndex = 2;
@@ -131,7 +134,8 @@
             // 
             // btnManageOrders
             // 
-            btnManageOrders.Location = new Point(682, 457);
+            btnManageOrders.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnManageOrders.Location = new Point(648, 457);
             btnManageOrders.Name = "btnManageOrders";
             btnManageOrders.Size = new Size(106, 23);
             btnManageOrders.TabIndex = 3;
@@ -139,11 +143,35 @@
             btnManageOrders.UseVisualStyleBackColor = true;
             btnManageOrders.Click += btnManageOrders_Click;
             // 
+            // btnManagePromotions
+            // 
+            btnManagePromotions.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnManagePromotions.Location = new Point(503, 457);
+            btnManagePromotions.Name = "btnManagePromotions";
+            btnManagePromotions.Size = new Size(139, 23);
+            btnManagePromotions.TabIndex = 4;
+            btnManagePromotions.Text = "Manage Promotions";
+            btnManagePromotions.UseVisualStyleBackColor = true;
+            btnManagePromotions.Click += btnManagePromotions_Click;
+            // 
+            // btnManageLoyalty
+            // 
+            btnManageLoyalty.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnManageLoyalty.Location = new Point(358, 457);
+            btnManageLoyalty.Name = "btnManageLoyalty";
+            btnManageLoyalty.Size = new Size(139, 23);
+            btnManageLoyalty.TabIndex = 5;
+            btnManageLoyalty.Text = "Manage Loyalty";
+            btnManageLoyalty.UseVisualStyleBackColor = true;
+            btnManageLoyalty.Click += btnManageLoyalty_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 492);
+            ClientSize = new Size(766, 492);
+            Controls.Add(btnManageLoyalty);
+            Controls.Add(btnManagePromotions);
             Controls.Add(btnManageOrders);
             Controls.Add(btnAddProduct);
             Controls.Add(txtSearch);
@@ -169,5 +197,7 @@
         private DataGridViewButtonColumn btnEdit;
         private DataGridViewButtonColumn btnDelete;
         private Button btnManageOrders;
+        private Button btnManagePromotions;
+        private Button btnManageLoyalty;
     }
 }
